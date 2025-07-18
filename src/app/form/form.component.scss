@@ -1,0 +1,203 @@
+@font-face {
+  src: url("../fonts/Lora-Regular.ttf");
+  font-family: "Lora";
+  font-weight: 400;
+}
+
+@font-face {
+  src: url("../fonts/Montserrat-Regular.ttf");
+  font-family: "Montserrat";
+  font-weight: 400;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  gap: 20px;
+}
+
+.auth-form {
+
+  .auth-title {
+    font-family: 'Lora', sans-serif;
+    font-style: normal;
+    font-size: 36px;
+    color: #709FDC;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .auth-inputs {
+    margin-bottom: 40px;
+
+    .auth-input {
+      margin-bottom: 5px;
+    }
+
+    .auth-checkbox {
+      max-width: 422px;
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+      margin: 10px 0 15px 0;
+      font-family: 'Montserrat', sans-serif;
+      border-bottom: 2px solid transparent;
+
+      input {
+        margin: 0;
+      }
+
+      label {
+        font-size: 14px;
+        line-height: 130%;
+        color: #071739;
+      }
+
+      &:has(.checkbox.ng-invalid.ng-touched) {
+        border-bottom: 2px solid red;
+      }
+    }
+
+    .passwords {
+
+      padding-top: 10px;
+
+      .passwords-actions {
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+
+        .passwords-title {
+          font-family: 'Lora', sans-serif;
+          font-size: 24px;
+          color: #709FDC;
+        }
+
+        .passwords-actions-buttons {
+
+          .btn-add {
+            border: none;
+            border-radius: 10px;
+            background-color: #709FDC;
+            font-size: 24px;
+            cursor: pointer;
+            width: 38px;
+            height: 38px;
+          }
+        }
+      }
+
+      .passwords-inputs {
+        margin-bottom: 5px;
+        border-bottom: 5px solid black;
+
+        .passwords-delete {
+          display: flex;
+          justify-content: flex-end;
+          padding-top: 5px;
+          margin-bottom: 10px;
+
+          .btn-delete {
+            border: none;
+            border-radius: 10px;
+            background-color: #709FDC;
+            font-size: 24px;
+            cursor: pointer;
+            width: 38px;
+            height: 38px;
+          }
+        }
+      }
+    }
+
+    .checkboxes {
+      display: grid;
+
+      .checkboxes-title {
+        font-family: 'Lora', sans-serif;
+        font-size: 24px;
+        color: #709FDC;
+        margin-bottom: 10px;
+      }
+
+      .checkboxes-rows {
+        display: grid;
+        grid-gap: 5px;
+
+        .checkboxes-label {
+          font-family: 'Montserrat', sans-serif;
+          font-size: 14px;
+          line-height: 130%;
+          color: #071739;
+          display: flex;
+          gap: 10px;
+          max-width: 422px;
+
+          .checkboxes-input {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.input {
+  width: 422px;
+  padding: 15.5px 20px;
+  border: 2px solid #709FDC;
+  box-sizing: border-box;
+  border-radius: 3px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  color: #071739;
+  outline: none;
+}
+
+.invalid-input {
+  display: none;
+}
+
+.input.ng-invalid.ng-touched + .invalid-input {
+  display: block;
+}
+
+.invalid-input {
+  font-size: 12px;
+  color: red;
+  margin-top: 3px;
+  width: 422px;
+}
+
+.input.ng-invalid.ng-touched {
+  border-color: red;
+}
+
+.input.ng-untouched.ng-invalid.ng-dirty {
+  border-color: red;
+}
+
+.auth-button {
+  margin-bottom: 10px;
+}
+
+.button {
+  text-align: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  border: 0;
+  border-radius: 5px;
+  font-family: 'Montserrat', sans-serif;
+  color: #FFFFFF;
+  font-size: 16px;
+  background: #709FDC;
+}
+
+.button-big {
+  padding: 15px;
+  width: 422px;
+}
+
+

@@ -1,0 +1,114 @@
+<div class="container">
+  <form class="auth-form" [formGroup]="signupForm" passwordRepeatDirective (ngSubmit)="onSubmit($event)">
+    <div class="auth-title">
+      Регистрация на сайте
+    </div>
+    <div class="auth-inputs">
+
+      <div class="auth-input">
+        <input type="text" class="input" placeholder="Ваше имя" formControlName="name">
+
+        @if (signupForm.controls.name.invalid && (signupForm.controls.name.touched || signupForm.controls.name.dirty)
+        && signupForm.controls.name.hasError('required')) {
+          <div class="invalid-input">
+            Первая буква должны быть заглавной, остальные строчные. Только кириллица
+          </div>
+        }
+
+        @if (signupForm.controls.name.invalid && (signupForm.controls.name.touched || signupForm.controls.name.dirty)
+        && signupForm.controls.name.hasError('startsWith')) {
+          <div class="invalid-input">
+            {{ signupForm.controls.name.getError('startsWith')?.message }}
+          </div>
+        }
+
+      </div>
+
+      <div class="auth-input">
+        <input type="text" class="input" placeholder="Ваш username" formControlName="username">
+        @if (signupForm.controls.username.invalid && (signupForm.controls.username.touched || signupForm.controls.username.dirty)
+        && signupForm.controls.username.hasError('required')) {
+          <div class="invalid-input">
+            Поле username может содержать от 4 до 20 букв, символ точки или нижнего подчеркивания, но только не в
+            начале и конце. Только латиница
+          </div>
+        }
+      </div>
+
+      <div class="auth-input">
+        <input type="text" class="input" placeholder="Электронная почта" formControlName="email">
+        @if (signupForm.controls.email.invalid && (signupForm.controls.email.touched || signupForm.controls.email.dirty)
+        && signupForm.controls.email.hasError('required')) {
+          <div class="invalid-input">
+            Поле обязательно для заполнения
+          </div>
+        }
+      </div>
+
+      <div class="passwords">
+        <div class="passwords-actions">
+          <div class="passwords-title">Пароли</div>
+          <div class="passwords-actions-buttons">
+            <button type="button" class="btn-add" (click)="addPasswordsGroup()">+</button>
+          </div>
+        </div>
+
+        @for (group of signupForm.controls.passwords.controls; track group; let i = $index) {
+          <div class="passwords-inputs" [formGroup]="group">
+
+            <div class="auth-input">
+              <input type="password" class="input" placeholder="Пароль" formControlName="password">
+              <div class="invalid-input">
+                Пароль должен содержать минимум: 8 символов, одну заглавную букву, одну строчную, одну цифру, один
+                специальный символ
+              </div>
+
+              <!--              @if (signupForm.get('password')?.invalid && (signupForm.get('password')?.touched-->
+              <!--                || signupForm.get('password')?.dirty) && signupForm.get('password')?.errors?.['required']) {-->
+              <!--              }-->
+            </div>
+
+            <div class="auth-input">
+              <input type="password" class="input" placeholder="Повторите пароль" formControlName="passwordRepeat">
+              <div class="invalid-input">
+                Пароли должны совпадать!
+              </div>
+
+              <!--              @if (signupForm.get('passwordRepeat')?.invalid && (signupForm.get('passwordRepeat')?.touched-->
+              <!--                || signupForm.get('passwordRepeat')?.dirty) && signupForm.get('passwordRepeat')?.errors?.['required']) {-->
+              <!--              }-->
+            </div>
+
+
+            <div class="passwords-delete">
+              <button type="button" class="btn-delete" (click)="deletePasswordsGroup(i)">-</button>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="auth-checkbox">
+        <input type="checkbox" id="agree" formControlName="agree" class="checkbox">
+        <label for="agree">
+          Я принимаю условия пользовательского соглашения и даю согласие на обработку персональных данных.
+        </label>
+      </div>
+
+      <div class="checkboxes" [formGroup]="signupForm.controls.checkboxes">
+        <div class="checkboxes-title">Дополнительные условия</div>
+
+        <div class="checkboxes-rows">
+          @for (control of signupForm.controls.checkboxes.controls | keyvalue: sort; track control; let i = $index) {
+            <label class="checkboxes-label">
+              <input type="checkbox" [formControlName]="control.key" class="checkboxes-input">
+              {{ checkboxes[i].label }}
+            </label>
+          }
+        </div>
+      </div>
+    </div>
+    <div class="auth-button">
+      <button class="button button-big">Зарегистрироваться</button>
+    </div>
+  </form>
+</div>

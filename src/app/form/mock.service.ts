@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Observable, of} from "rxjs";
-import {Password} from "../types/password";
-import {Checkbox} from "../types/checkbox";
+import {Password} from "../types/password.interface";
+import {Checkbox} from "../types/checkbox.interface";
 
 @Injectable({providedIn: 'root'})
 export class MockService {

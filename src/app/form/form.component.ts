@@ -11,8 +11,9 @@ import {CommonModule} from '@angular/common';
 import {PasswordRepeatDirective} from "../directives/password-repeat.directive";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {MockService} from "./mock.service";
-import {Password} from "../types/password";
-import {Checkbox} from "../types/checkbox";
+import {Password} from "../types/password.interface";
+import {Checkbox} from "../types/checkbox.interface";
+import {FirstNameValidator} from "../validators/firstname.validator";
 
 function getPasswords(value: Password = {}) {
   return new FormGroup({
@@ -45,7 +46,11 @@ export class FormComponent {
   checkboxes: Checkbox[] = [];
 
   signupForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.pattern(/^[А-Я]{1}[а-я]+$/), validateStartsWith('К')]),
+    name: new FormControl('', {
+      validators: [Validators.required, Validators.pattern(/^[А-Я]{1}[а-я]+$/), validateStartsWith('К')],
+      asyncValidators: [this.firstNameValidator.validate.bind(this.firstNameValidator)],
+      updateOn: 'blur',
+    }),
     username: new FormControl('', [Validators.required, Validators.pattern(/^(?=.{4,20}$)(?:[a-zA-Z\d]+(?:[._][a-zA-Z\d])*)+$/)]),
     email: new FormControl('', [Validators.required, Validators.pattern(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)]),
     passwords: new FormArray([getPasswords()]),
@@ -53,7 +58,7 @@ export class FormComponent {
     checkboxes: new FormRecord({})
   });
 
-  constructor(private mockService: MockService) {
+  constructor(private mockService: MockService, private firstNameValidator: FirstNameValidator) {
     this.mockService.getPasswords()
       .pipe(takeUntilDestroyed())
       .subscribe(passwords => {

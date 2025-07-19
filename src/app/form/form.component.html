@@ -8,17 +8,24 @@
       <div class="auth-input">
         <input type="text" class="input" placeholder="Ваше имя" formControlName="name">
 
-        @if (signupForm.controls.name.invalid && (signupForm.controls.name.touched || signupForm.controls.name.dirty)
-        && signupForm.controls.name.hasError('required')) {
-          <div class="invalid-input">
-            Первая буква должны быть заглавной, остальные строчные. Только кириллица
-          </div>
-        }
+        <!--        @if (signupForm.controls.name.invalid && (signupForm.controls.name.touched || signupForm.controls.name.dirty)-->
+        <!--        && signupForm.controls.name.hasError('required')) {-->
+        <!--          <div class="invalid-input">-->
+        <!--            Первая буква должны быть заглавной, остальные строчные. Только кириллица-->
+        <!--          </div>-->
+        <!--        }-->
+
+        <!--        @if (signupForm.controls.name.invalid && (signupForm.controls.name.touched || signupForm.controls.name.dirty)-->
+        <!--        && signupForm.controls.name.hasError('startsWith')) {-->
+        <!--          <div class="invalid-input">-->
+        <!--            {{ signupForm.controls.name.getError('startsWith')?.message }}-->
+        <!--          </div>-->
+        <!--        }-->
 
         @if (signupForm.controls.name.invalid && (signupForm.controls.name.touched || signupForm.controls.name.dirty)
-        && signupForm.controls.name.hasError('startsWith')) {
+        && signupForm.controls.name.hasError('nameValid')) {
           <div class="invalid-input">
-            {{ signupForm.controls.name.getError('startsWith')?.message }}
+            {{ signupForm.controls.name.getError('nameValid')?.message }}
           </div>
         }
 

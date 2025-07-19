@@ -156,6 +156,10 @@
   outline: none;
 }
 
+.input.ng-pending {
+  border: 2px dashed #AE7AFF;
+}
+
 .invalid-input {
   display: none;
 }
